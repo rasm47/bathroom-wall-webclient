@@ -1,40 +1,8 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
-import { List } from '@material-ui/core';
-import { Container } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import { AppBar } from '@material-ui/core';
-import { Paper } from '@material-ui/core';
-import { Toolbar } from '@material-ui/core';
+import { TextField ,AppBar, Paper, Toolbar, Typography, Container, List, IconButton } from '@material-ui/core';
 import { Menu as MenuIcon, Close as CloseIcon } from '@material-ui/icons';
 import ScrollableFeed from 'react-scrollable-feed';
 import './App.css';
-
-async function getData() {
-  const response = await fetch('http://localhost:3002/data', {
-    method: 'GET',
-    mode: 'cors',
-    cache: 'no-cache'
-  });
-  
-  return response.json();
-}
-
-async function postData(strToAdd) {
-  if (!strToAdd || strToAdd.length === 0) {
-    return;
-  }
-  const response = await fetch('http://localhost:3002/data', {
-    method: 'POST',
-    mode: 'cors', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({data: strToAdd})
-  });
-  return response.json();
-}
 
 class App extends React.Component {
   constructor(props) {
