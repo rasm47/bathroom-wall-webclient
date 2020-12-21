@@ -24,6 +24,19 @@ function Login(props) {
 }
 
 // dummy for testing
+function Logout(props) {
+  return (
+    <Container>
+      <p> logout </p>
+      <button onClick={() => {
+        Auth.logout();
+        alert("logged out");
+      }}>Click here to logout</button>
+    </Container>
+  );
+}
+
+// dummy for testing
 function Root(props) {
   return (
     <Container>
@@ -33,6 +46,9 @@ function Root(props) {
         </li>
         <li>
           <Link to="/login">login</Link>
+        </li>
+        <li>
+        <Link to="/logout">logout</Link>
         </li>
         <li>
         <Link to="/secret">secret</Link>
@@ -90,6 +106,7 @@ class App extends React.Component {
             <Route exact path="/" component={Root} />
             <Route path="/register" component={Register} />
             <Route path="/secret" component={Secret} />
+            <Route path="/logout" component={Logout} />
           </Switch>
         </Container>
       </Router>
