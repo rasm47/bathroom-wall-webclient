@@ -4,7 +4,7 @@ This is a hacky/work-in-progress UI for [bathroom-wall](https://github.com/rasm4
 
 This project serves as a way for me to learn stuff by doing stuff.
 
-Currently the UI looks for the bathroom-wall backend server at http://localhost:3002.
+Currently the UI looks for the bathroom-wall backend server at http://localhost:3001.
 
 ## running
 
