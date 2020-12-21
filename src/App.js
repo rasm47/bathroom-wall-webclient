@@ -8,11 +8,18 @@ import HomeScreen from './components/homescreen';
 import Textbox from './components/textbox';
 import Room from './components/room';
 import MyMenuBar from './components/mymenubar';
+import Auth from './services/authservice';
 
 // dummy for testing
 function Login(props) {
   return (
-    <Container><p> login </p></Container>
+    <Container>
+      <p> login </p>
+      <button onClick={() => {
+        Auth.login("alice");
+        alert(JSON.stringify(Auth.getUser()));
+      }}>Click here to login as "alice"</button>
+    </Container>
   );
 }
 
@@ -39,14 +46,19 @@ function Root(props) {
 // dummy for testing
 function Register(props) {
   return (
-    <Container><p> register </p></Container>
+    <Container>
+      <p> register </p>
+      <button onClick={() => {
+        Auth.register("alice");
+      }}>Click here to register as "alice"</button>
+    </Container>
   );
 }
 
 // dummy for testing
 function Secret(props) {
   return (
-    <Container><p> secret </p></Container>
+    <Container><p>secret (eventually show only to logged in users)</p></Container>
   );
 }
 
