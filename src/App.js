@@ -9,6 +9,7 @@ import Textbox from './components/textbox';
 import Room from './components/room';
 import MyMenuBar from './components/mymenubar';
 import Auth from './services/authservice';
+import DataService from './services/dataservice';
 
 // dummy for testing
 function Login(props) {
@@ -16,8 +17,7 @@ function Login(props) {
     <Container>
       <p> login </p>
       <button onClick={() => {
-        Auth.login("alice");
-        alert(JSON.stringify(Auth.getUser()));
+        Auth.login("alice").then(_ => alert(JSON.stringify(Auth.getUser())));
       }}>Click here to login as "alice"</button>
     </Container>
   );
@@ -74,7 +74,12 @@ function Register(props) {
 // dummy for testing
 function Secret(props) {
   return (
-    <Container><p>secret (eventually show only to logged in users)</p></Container>
+    <Container>
+      <p>secret</p>
+      <button onClick={() => {
+        DataService.getSecret().then(r => alert(JSON.stringify(r.data))).catch(e => alert(JSON.stringify(e.message)));
+      }}>alert to test secret</button>
+    </Container>
   );
 }
 
