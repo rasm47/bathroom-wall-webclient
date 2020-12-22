@@ -35,6 +35,7 @@ export default function RegisterForm(props) {
           <TextField
             name="password1"
             variant="outlined"
+            type="password"
             value={password1}
             placeholder="password"
             required
@@ -46,6 +47,7 @@ export default function RegisterForm(props) {
           <TextField
             name="password2"
             variant="outlined"
+            type="password"
             value={password2}
             placeholder="retype password"
             required
