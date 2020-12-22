@@ -7,6 +7,7 @@ export default function RegisterForm(props) {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState("");
+  const [passwordMatchError, setPasswordMatchError] = useState("");
 
   return (
     <form>
@@ -50,8 +51,18 @@ export default function RegisterForm(props) {
             variant="outlined"
             type="password"
             value={password2}
+            error={passwordMatchError}
+            helperText={passwordMatchError ? "Passwords don't match" : ""}
             required
-            onChange={e => setPassword2(e.target.value)}
+            onChange={e => {
+              setPassword2(e.target.value);
+            }}
+            onFocus={e => {
+              setPasswordMatchError(false);
+            }}
+            onBlur={e => {
+              setPasswordMatchError(password1 !== password2);
+            }}
           />
         </Grid>
 
