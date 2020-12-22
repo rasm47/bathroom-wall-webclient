@@ -7,6 +7,7 @@ import './App.css';
 import HomeScreen from './components/homescreen';
 import Textbox from './components/textbox';
 import Room from './components/room';
+import RegisterForm from './components/registerform';
 import MyMenuBar from './components/mymenubar';
 import Auth from './services/authservice';
 import DataService from './services/dataservice';
@@ -63,10 +64,13 @@ function Root(props) {
 function Register(props) {
   return (
     <Container>
-      <p> register </p>
+      <h2> register page </h2>
       <button onClick={() => {
         Auth.register("alice");
       }}>Click here to register as "alice"</button>
+      <RegisterForm onRegisterClick={obj => {
+        alert(JSON.stringify(obj));
+      }} />
     </Container>
   );
 }
