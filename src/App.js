@@ -108,26 +108,27 @@ class App extends React.Component {
           close={() => this.setState({ renderRoomSelection: false })}
           render={this.state.renderRoomSelection}
         />
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/">
-              <Root />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/secret">
-              <Secret />
-            </Route>
-            <Route path="/logout">
-              <Logout />
-            </Route>
-          </Switch>
-        </Router>
-
+        <Container style={{paddingTop: "32px"}}>
+          <Router>
+            <Switch>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/">
+                <Root />
+              </Route>
+              <Route path="/register">
+                <Register />
+              </Route>
+              <Route path="/secret">
+                <Secret />
+              </Route>
+              <Route path="/logout">
+                <Logout />
+              </Route>
+            </Switch>
+          </Router>
+        </Container>
       </Container>
     );
   }
