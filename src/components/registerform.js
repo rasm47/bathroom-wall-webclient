@@ -22,9 +22,9 @@ export default function RegisterForm(props) {
         <Grid item>
           <TextField
             name="username"
+            label="Username"
             variant="outlined"
             value={username}
-            placeholder="username"
             autoFocus
             required
             onChange={e => setUsername(e.target.value)}
@@ -34,10 +34,10 @@ export default function RegisterForm(props) {
         <Grid item>
           <TextField
             name="password1"
+            label="Password"
             variant="outlined"
             type="password"
             value={password1}
-            placeholder="password"
             required
             onChange={e => setPassword1(e.target.value)}
           />
@@ -46,10 +46,10 @@ export default function RegisterForm(props) {
         <Grid item>
           <TextField
             name="password2"
+            label="Confirm password"
             variant="outlined"
             type="password"
             value={password2}
-            placeholder="retype password"
             required
             onChange={e => setPassword2(e.target.value)}
           />
@@ -58,9 +58,10 @@ export default function RegisterForm(props) {
         <Grid item>
           <TextField
             name="email"
+            label="Email"
+            type="email"
             variant="outlined"
             value={email}
-            placeholder="email address"
             onChange={e => setEmail(e.target.value)}
           />
         </Grid>
