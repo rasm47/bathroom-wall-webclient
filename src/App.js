@@ -49,13 +49,13 @@ function Root(props) {
           <Link to="/login">login</Link>
         </li>
         <li>
-        <Link to="/logout">logout</Link>
+          <Link to="/logout">logout</Link>
         </li>
         <li>
-        <Link to="/secret">secret</Link>
+          <Link to="/secret">secret</Link>
         </li>
       </ul>
-      
+
     </Container>
   );
 }
@@ -97,29 +97,41 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Container component="main" maxWidth="md">
-          <MyMenuBar 
-            homeClick={ () => {this.setState({renderRoomSelection: !this.state.renderRoomSelection})}}
-          />
-          <HomeScreen
-            close={ () => this.setState({renderRoomSelection: false})}
-            render={this.state.renderRoomSelection}
-          />
+      <Container component="main" maxWidth="md">
+
+        <MyMenuBar
+          homeClick={() => {
+            this.setState({ renderRoomSelection: !this.state.renderRoomSelection })
+          }}
+        />
+        <HomeScreen
+          close={() => this.setState({ renderRoomSelection: false })}
+          render={this.state.renderRoomSelection}
+        />
+        <Router>
           <Switch>
             <Route path="/login">
               <Login />
             </Route>
-            <Route exact path="/" component={Root} />
-            <Route path="/register" component={Register} />
-            <Route path="/secret" component={Secret} />
-            <Route path="/logout" component={Logout} />
+            <Route exact path="/">
+              <Root />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/secret">
+              <Secret />
+            </Route>
+            <Route path="/logout">
+              <Logout />
+            </Route>
           </Switch>
-        </Container>
-      </Router>
+        </Router>
+
+      </Container>
     );
   }
-  
+
 }
 
 
