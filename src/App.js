@@ -97,7 +97,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container component="main" maxWidth="md">
+      <Container component="main" >
 
         <MyMenuBar
           homeClick={() => {
