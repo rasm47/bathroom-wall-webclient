@@ -63,13 +63,11 @@ function Root(props) {
 // dummy for testing
 function Register(props) {
   return (
-    <Container>
-      <h2> register page </h2>
-      <button onClick={() => {
-        Auth.register("alice");
-      }}>Click here to register as "alice"</button>
+    <Container >
       <RegisterForm onRegisterClick={obj => {
-        alert(JSON.stringify(obj));
+        const username = obj.username;
+        Auth.register(username).then(_ => alert(username + ' registered'));
+        // TODO give better feedback when registering (success, username taken, etc)
       }} />
     </Container>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button } from '@material-ui/core';
+import { Grid, TextField, Button, Paper } from '@material-ui/core';
 import {Create as CreateIcon} from '@material-ui/icons';
 
 export default function RegisterForm(props) {
@@ -10,6 +10,7 @@ export default function RegisterForm(props) {
 
   return (
     <form>
+      
       <Grid
         container
         spacing={1}
@@ -84,7 +85,7 @@ export default function RegisterForm(props) {
           </Button>
         </Grid>
       </Grid>
-    </form>
 
+    </form>
   );
 }
