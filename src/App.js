@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
 import HomeScreen from './components/homescreen';
-import Textbox from './components/textbox';
-import Room from './components/room';
+//import Textbox from './components/textbox';
+//import Room from './components/room';
 import RegisterForm from './components/registerform';
 import MyMenuBar from './components/mymenubar';
 import Auth from './services/authservice';

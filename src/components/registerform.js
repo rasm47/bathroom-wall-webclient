@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button, Paper } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
 import {Create as CreateIcon} from '@material-ui/icons';
 
 export default function RegisterForm(props) {
