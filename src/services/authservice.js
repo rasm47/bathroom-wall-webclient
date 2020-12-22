@@ -6,14 +6,20 @@ const API_URL = "http://localhost:3001/";
 class Auth {
     login(username) {
         return axios
-            .post(`${API_URL}login`, { username })
+            .post(`${API_URL}login`, {
+                username
+            })
             .then(res => {
-                if (res.data.token) {
+                if (res.data.token && res.data.token !== "") {
                     localStorage.setItem("username", username);
                     localStorage.setItem("token", res.data.token);
                 }
-
-                return res.data;
+                return;
+            }).catch(e => {
+                if (e && e.response && e.response.status === 401) {
+                    // TODO: replace this temp alert with something better 
+                    alert("Invalid username or password.");
+                }
             });
     }
 

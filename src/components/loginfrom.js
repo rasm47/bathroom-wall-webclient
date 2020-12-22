@@ -51,7 +51,7 @@ export default function LoginForm(props) {
                 username: username,
                 password: "TODO",
               };
-              alert(JSON.stringify(obj));
+              props.onLogin(obj);
             }}
           >
             LOGIN

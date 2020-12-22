@@ -17,11 +17,11 @@ import DataService from './services/dataservice';
 function Login(props) {
   return (
     <Container>
-      <p> login </p>
-      <button onClick={() => {
-        Auth.login("alice").then(_ => alert(JSON.stringify(Auth.getUser())));
-      }}>Click here to login as "alice"</button>
-      <LoginForm />
+      <h3> login form </h3>
+      <LoginForm onLogin={obj => {
+        const username = obj.username;
+        Auth.login(username);
+      }}/>
     </Container>
   );
 }
