@@ -8,6 +8,7 @@ import HomeScreen from './components/homescreen';
 //import Textbox from './components/textbox';
 //import Room from './components/room';
 import RegisterForm from './components/registerform';
+import LoginForm from './components/loginfrom';
 import MyMenuBar from './components/mymenubar';
 import Auth from './services/authservice';
 import DataService from './services/dataservice';
@@ -20,6 +21,7 @@ function Login(props) {
       <button onClick={() => {
         Auth.login("alice").then(_ => alert(JSON.stringify(Auth.getUser())));
       }}>Click here to login as "alice"</button>
+      <LoginForm />
     </Container>
   );
 }
