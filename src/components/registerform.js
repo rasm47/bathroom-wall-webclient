@@ -1,17 +1,77 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button } from '@material-ui/core';
-import {Create as CreateIcon} from '@material-ui/icons';
+import { Grid, TextField, Button, Snackbar } from '@material-ui/core';
+import { Create as CreateIcon } from '@material-ui/icons';
+import Alert from '@material-ui/lab/Alert';
+
+import Auth from '../services/authservice';
+
+function FeedbackSnackbar(props) {
+  return (
+    <Snackbar
+      open={props.snackOpen}
+      onClose={props.snackClose}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
+    >
+      <Alert
+        onClose={props.snackClose}
+        severity={props.snackSeverity}
+        variant="filled"
+      >
+        {props.snackText}
+      </Alert>
+    </Snackbar>
+  );
+}
 
 export default function RegisterForm(props) {
   const [username, setUsername] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState("");
-  const [passwordMatchError, setPasswordMatchError] = useState("");
+  const [passwordMatchError, setPasswordMatchError] = useState(false);
+  const [snackState, setSnackState] = useState("none");
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackState("none");
+  };
+
+  const handleRegisterButtonPress = event => {
+      event.preventDefault();
+      
+      const obj = {
+        username: username,
+        password: password1,
+        email: email,
+      };
+
+      if (password1 === password2) {
+        Auth.register(obj.username)
+        .then(() => setSnackState("success"))
+        .catch(e => {
+          setSnackState("usernametaken");
+        });
+      }
+    };
 
   return (
     <form>
-      
+      <FeedbackSnackbar 
+        snackOpen={snackState === "success"}
+        snackClose={handleSnackbarClose}
+        snackSeverity="success"
+        snackText="account created, please login"
+      />
+      <FeedbackSnackbar 
+        snackOpen={snackState === "usernametaken"}
+        snackClose={handleSnackbarClose}
+        snackSeverity="error"
+        snackText="username taken"
+      />
+
       <Grid
         container
         spacing={1}
@@ -81,19 +141,7 @@ export default function RegisterForm(props) {
           <Button
             variant="contained"
             endIcon={<CreateIcon />}
-            onClick={event => {
-              event.preventDefault();
-              const obj = {
-                username: username,
-                password: password1,
-                email: email,
-              };
-              if (password1 === password2) {
-                props.onRegisterClick(obj);
-              } else {
-                // TODO
-              }
-            }}
+            onClick={handleRegisterButtonPress}
           >
             REGISTER
           </Button>

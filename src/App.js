@@ -66,11 +66,7 @@ function Root(props) {
 function Register(props) {
   return (
     <Container >
-      <RegisterForm onRegisterClick={obj => {
-        const username = obj.username;
-        Auth.register(username).then(_ => alert(username + ' registered'));
-        // TODO give better feedback when registering (success, username taken, etc)
-      }} />
+      <RegisterForm />
     </Container>
   );
 }
