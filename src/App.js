@@ -20,7 +20,7 @@ function Login(props) {
       <h3> login form </h3>
       <LoginForm onLogin={obj => {
         const username = obj.username;
-        Auth.login(username);
+        Auth.login(username, () => props.setShowLogin(true));
       }} />
     </Container>
   );
@@ -33,6 +33,7 @@ function Logout(props) {
       <p> logout </p>
       <button onClick={() => {
         Auth.logout();
+        props.setShowLogin(false);
         alert("logged out");
       }}>Click here to logout</button>
     </Container>
@@ -87,12 +88,14 @@ function Secret(props) {
 
 function App() {
   const [renderRoomSelection, setRenderRoomSelection] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <Container component="main" >
 
       <MyMenuBar
         homeClick={() => setRenderRoomSelection(!renderRoomSelection)}
+        showLogin={showLogin}
       />
 
       <HomeScreen
@@ -104,7 +107,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/login">
-              <Login />
+              <Login setShowLogin={setShowLogin}/>
             </Route>
             <Route exact path="/">
               <Root />
@@ -116,7 +119,7 @@ function App() {
               <Secret />
             </Route>
             <Route path="/logout">
-              <Logout />
+              <Logout setShowLogin={setShowLogin}/>
             </Route>
           </Switch>
         </Router>

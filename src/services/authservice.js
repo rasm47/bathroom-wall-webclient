@@ -4,7 +4,7 @@ import axios from "axios";
 const API_URL = "http://localhost:3001/";
 
 class Auth {
-    login(username) {
+    login(username, successCallback) {
         return axios
             .post(`${API_URL}login`, {
                 username
@@ -13,6 +13,7 @@ class Auth {
                 if (res.data.token && res.data.token !== "") {
                     localStorage.setItem("username", username);
                     localStorage.setItem("token", res.data.token);
+                    successCallback();
                 }
                 return;
             }).catch(e => {
