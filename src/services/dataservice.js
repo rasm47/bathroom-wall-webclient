@@ -9,11 +9,16 @@ function tokenHeader() {
 }
 
 class DataService {
-    getSecret() {
-        return axios.get(
-            `${API_URL}secret`,
-            { headers: tokenHeader() },
-        );
+    async getSecret() {
+        try {
+            const res = await axios.get(
+                `${API_URL}secret`,
+                { headers: tokenHeader() },
+            );
+            return JSON.stringify(res.data);
+        } catch(e) {
+            return JSON.stringify(e.message);
+        }
     }
 }
 

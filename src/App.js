@@ -77,10 +77,9 @@ function Secret(props) {
   return (
     <Container>
       <p>secret</p>
-      <button onClick={() => {
-        DataService.getSecret()
-          .then(r => alert(JSON.stringify(r.data)))
-          .catch(e => alert(JSON.stringify(e.message)));
+      <button onClick={async () => {
+        const secret =  await DataService.getSecret();
+        alert(secret);
       }}>alert to test secret</button>
     </Container>
   );
