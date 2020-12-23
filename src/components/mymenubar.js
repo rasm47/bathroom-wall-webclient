@@ -1,5 +1,5 @@
 import React from 'react';
-import {Toolbar, AppBar, IconButton, Typography, Box} from '@material-ui/core';
+import {Toolbar, AppBar, IconButton, Typography} from '@material-ui/core';
 import {Menu as MenuIcon, AccountCircle as AccountCircleIcon} from '@material-ui/icons';
 
 export default function MyMenuBar(props) {
