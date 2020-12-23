@@ -4,12 +4,16 @@ import {Menu as MenuIcon} from '@material-ui/icons';
 
 export default function MyMenuBar(props) {
   return (
-    <AppBar position="static">
+    <React.Fragment>
+    <AppBar position="fixed">
       <Toolbar>
         <IconButton onClick={props.homeClick}>
           <MenuIcon />
         </IconButton>
       </Toolbar>
+      
     </AppBar>
+    <Toolbar />
+    </React.Fragment>
   );
 }
