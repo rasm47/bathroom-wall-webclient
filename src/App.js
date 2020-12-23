@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ function Login(props) {
       <LoginForm onLogin={obj => {
         const username = obj.username;
         Auth.login(username);
-      }}/>
+      }} />
     </Container>
   );
 }
@@ -85,55 +85,44 @@ function Secret(props) {
   );
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      roomTitle: "roomtitle",
-      roomMessages: ["Inital message for quick UI testing 1", "Inital message for quick UI testing 2"],
-      renderRoomSelection: false,
-    };
-  }
+function App() {
+  const [renderRoomSelection, setRenderRoomSelection] = useState(false);
 
-  render() {
-    return (
-      <Container component="main" >
+  return (
+    <Container component="main" >
 
-        <MyMenuBar
-          homeClick={() => {
-            this.setState({ renderRoomSelection: !this.state.renderRoomSelection })
-          }}
-        />
-        <HomeScreen
-          close={() => this.setState({ renderRoomSelection: false })}
-          render={this.state.renderRoomSelection}
-        />
-        <Container style={{paddingTop: "32px"}}>
-          <Router>
-            <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/">
-                <Root />
-              </Route>
-              <Route path="/register">
-                <Register />
-              </Route>
-              <Route path="/secret">
-                <Secret />
-              </Route>
-              <Route path="/logout">
-                <Logout />
-              </Route>
-            </Switch>
-          </Router>
-        </Container>
+      <MyMenuBar
+        homeClick={() => setRenderRoomSelection(!renderRoomSelection)}
+      />
+
+      <HomeScreen
+        close={() => setRenderRoomSelection(false)}
+        render={renderRoomSelection}
+      />
+
+      <Container style={{ paddingTop: "32px" }}>
+        <Router>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/">
+              <Root />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/secret">
+              <Secret />
+            </Route>
+            <Route path="/logout">
+              <Logout />
+            </Route>
+          </Switch>
+        </Router>
       </Container>
-    );
-  }
-
+    </Container>
+  );
 }
-
 
 export default App;
