@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -78,7 +78,7 @@ function Secret(props) {
     <Container>
       <p>secret</p>
       <button onClick={async () => {
-        const secret =  await DataService.getSecret();
+        const secret = await DataService.getSecret();
         alert(secret);
       }}>alert to test secret</button>
     </Container>
@@ -89,8 +89,15 @@ function App() {
   const [renderRoomSelection, setRenderRoomSelection] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
+  useEffect(async () => {
+    const token = await Auth.getUser().token;
+    if (token && token !== "") {
+      setShowLogin(true);
+    }
+  }, []);
+
   return (
-    <Container component="main" >
+    <Container component="main">
 
       <MyMenuBar
         homeClick={() => setRenderRoomSelection(!renderRoomSelection)}
